@@ -6,6 +6,7 @@ typedef struct {
     int32 Y;
 } point2d;
 
+
 int main()
 {
 
@@ -28,7 +29,7 @@ int main()
 
         int32 P = CAST_TO_VALUE(int32, ListGet(&PointList, i));
         printf("int: %d\n", P);
-    } 
+    }
 
     /*
         int32 A = 23;

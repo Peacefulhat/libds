@@ -1,5 +1,5 @@
 #include "libds.h"
-
+#define DA_INI_CAP 5
 void ListInit(list* List, uint32 SizeofType, size_t InitialCapacity)
 {
     if(List == NULL) {
@@ -22,11 +22,14 @@ void ListInit(list* List, uint32 SizeofType, size_t InitialCapacity)
 
 static void Grow(list* List)
 {
-    if((List == NULL && List->Data)) {
+    if((List == NULL)) {
         printf("Grow(): Invalid pointer `List`");
         return;
     }
 
+    if(List->Capacity == 0) {
+        List->Capacity = DA_INI_CAP;
+    }
     while(List->Size >= List->Capacity) {
         List->Capacity *= 2;
     }
@@ -38,18 +41,22 @@ static void Grow(list* List)
 
 void ListPushback(list* List, void* Data)
 {
-    if(Data == NULL ||(List == NULL && List->Data)) {
+    if(Data == NULL ||(List == NULL)) {
         printf("Pushback(): List or Data pointer was NULL\n");
+        return;
     }
+
     if(List->Size >= List->Capacity) {
         Grow(List);
     }
 
-    char* Temp = List->Data + (List->SizeofType * List->Size);
-    for(int Byte = 0; Byte < List->SizeofType; ++Byte ) {
-        Temp[Byte] = *(char*)(Data + Byte);
+    if(List->Data) {
+        char* Temp = List->Data + (List->SizeofType * List->Size);
+        for(int Byte = 0; Byte < List->SizeofType; ++Byte ) {
+            Temp[Byte] = *(char*)(Data + Byte);
+        }
+        List->Size += 1;
     }
-    List->Size += 1;
 }
 
 void Popback(list* List)
@@ -135,6 +142,7 @@ void ListHeapDestory(list* List)
         free(List->Data);
         List->Size = 0;
         List->Capacity = 0;
+        List->Data = NULL;
         return;
     }
     printf("ListHeapDestory(): already freed List");
