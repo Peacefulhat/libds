@@ -19,6 +19,15 @@ void ListInit(list* List, uint32 SizeofType, size_t InitialCapacity);
 void ListPushback(list* List, void* Data);
   add a element at the end of list. O(1)
 
+void ListPushfront(list* List, void* Data);
+  add element at the front of list O(n)
+
+void ListPushat(list* List,uint32 Index, void* Data);
+  add element at given index O(n)
+
+void ListRemove(list* List, uint32 Index);
+  removes element at given index O(n)
+
 void Popback(list* List);
   removes the last element in the list. O(1)
 
@@ -45,10 +54,10 @@ static void Grow(list* List, uint32 ExpectedCapacity);
 
 void Shrink(list* List, uint32 ExpectedCapacity);
   shrink the capacity of the list. O(n).
- 
+
 void ListHeapDestory(list* List);
   deallocates the allocated void* Data in list. O(1)
- 
+
 hashtbale (not implemented yet)
 
 */
@@ -82,25 +91,23 @@ typedef struct {
 // TODO: implement pointer storing in list
 #define CAST_TO_VALUE(Type, Value) *(Type*)(Value);
 //#define CAST_TO_PTR(Type, Value) (Type*)(Value);
-void ListInit(list* List, uint32 SizeofType, size_t InitialCapacity);
+void ListInit(list* List, uint32 SizeofType);
 void ListPushback(list* List, void* Data);
-void Popback(list* List);
-void Clear(list* List);
+void ListPushfront(list* List, void* Data);
+void ListPushat(list* List,uint32 Index, void* Data);
+void ListPopback(list* List);
+void ListRemoveat(list* List, uint32 Index); 
+void ListClear(list* List);
 void* ListGet(list* List, uint32 Index);
-void Set(list* List, uint32 Index, void* Data);
-int32 Len(list* List);
-size_t Capacity(list* List);
-bool32 IsEmpty(list* List);
-void Shrink(list* List, uint32 ExpectedCapacity);
+int32 ListLen(list* List);
+size_t ListCapacity(list* List);
+bool32 ListIsEmpty(list* List);
+void Shrink(list* List);
+//void Shrink(list* List, uint32 ExpectedCapacity);
 void ListHeapDestory(list* List);
 
 
 
-/*
-TODO: implement
-void Pushfront(list* List, void* Data); // add element at the front of list
-void Pushat(list* List,uint32 Index, void* Data); // add element at given index
-void Remove(list* List, uint32 Index); // removes element at given index
-*/
+
 
 #endif
