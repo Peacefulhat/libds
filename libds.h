@@ -64,50 +64,6 @@ hashtbale (not implemented yet)
 
 #ifndef LIBDS_H
 #define LIBDS_H
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
-
-// common type alias
-typedef  int32_t  int32;
-typedef  int      int32;
-typedef  int64_t  int64;
-typedef  uint32_t uint32;
-typedef  uint32_t uint32;
-typedef  float    float32;
-typedef  double   float64;
-typedef  int32    bool32;
-
-//dynamic arrays
-typedef struct {
-    void* Data;
-    int32_t Size;
-    size_t  Capacity;
-    uint32 SizeofType;
-} list;
-
-// TODO: implement pointer storing in list
-#define CAST_TO_VALUE(Type, Value) *(Type*)(Value);
-//#define CAST_TO_PTR(Type, Value) (Type*)(Value);
-void ListInit(list* List, uint32 SizeofType);
-void ListPushback(list* List, void* Data);
-void ListPushfront(list* List, void* Data);
-void ListPushat(list* List,uint32 Index, void* Data);
-void ListPopback(list* List);
-void ListRemoveat(list* List, uint32 Index); 
-void ListClear(list* List);
-void* ListGet(list* List, uint32 Index);
-int32 ListLen(list* List);
-size_t ListCapacity(list* List);
-bool32 ListIsEmpty(list* List);
-void Shrink(list* List);
-//void Shrink(list* List, uint32 ExpectedCapacity);
-void ListHeapDestory(list* List);
-
-
-
-
-
+#include "libda.h" // dynamic array
+#include "libstr.h" // strings
 #endif
