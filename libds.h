@@ -66,4 +66,5 @@ hashtbale (not implemented yet)
 #define LIBDS_H
 #include "libda.h" // dynamic array
 #include "libstr.h" // strings
+#include "libstack.h"
 #endif

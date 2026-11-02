@@ -9,7 +9,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "commontype.h"
+#include "common.h"
 // TODO: remove bool with bool32 and remove stdbool.h
 #define FILE_READING 0
 

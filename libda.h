@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
-#include "commontype.h"
-
+#include "common.h"
+#define DEFAULT_DA_CAPACITY 128 // inital capacity of dynamic array
 
 //dynamic arrays
 typedef struct {

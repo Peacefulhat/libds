@@ -1,5 +1,4 @@
 #include "libda.h"
-#define DA_INI_CAP 16 // inital capacity of dynamic array
 
 void ListInit(list* List, uint32 SizeofType)
 {
@@ -8,7 +7,7 @@ void ListInit(list* List, uint32 SizeofType)
         return;
     }
     List->Size = 0;
-    List->Capacity= DA_INI_CAP;
+    List->Capacity= DEFAULT_DA_CAPACITY;
     List->SizeofType = SizeofType;
     List->Data = malloc(SizeofType * List->Capacity);
     if(List->Data == NULL) {
@@ -29,7 +28,7 @@ static void Grow(list* List)
     }
 
     if(List->Capacity == 0) {
-        List->Capacity = DA_INI_CAP;
+        List->Capacity = DEFAULT_DA_CAPACITY;
     }
     while(List->Size >= List->Capacity) {
         List->Capacity *= 2;
